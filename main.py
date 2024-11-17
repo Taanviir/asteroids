@@ -1,3 +1,4 @@
+import sys
 import contextlib
 with contextlib.redirect_stdout(None):
     import pygame
@@ -40,6 +41,11 @@ def main():
 
         for obj in updatable:
             obj.update(dt)
+
+        for obj in asteroids:
+            if obj.collision(player) == True:
+                print("Game Over!")
+                sys.exit()
 
         for obj in drawable:
             obj.draw(screen)
